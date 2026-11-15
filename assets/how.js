@@ -86,13 +86,13 @@
   if (cp) new IntersectionObserver(([en]) => {
     cpOn = en.isIntersecting;
     if (!vid) return;
-    // plays once the first time the panel is seen and holds its last frame, with SMAYAA's data lines lit
-    if (cpOn && !reduced && !document.hidden && !vid.ended) { if (!vid.src) vid.src = vid.dataset.src; vid.play().catch(() => {}); }
+    // loops while the panel is on screen
+    if (cpOn && !reduced && !document.hidden) { if (!vid.src) vid.src = vid.dataset.src; vid.play().catch(() => {}); }
     else vid.pause();
   }, { threshold: .3 }).observe(cp);
   // start downloading a little before the panel arrives, so it can play as soon as it is seen
   if (vid && !reduced) new IntersectionObserver(([en], o) => { if (en.isIntersecting) { vid.preload = 'auto'; if (!vid.src) vid.src = vid.dataset.src; o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(cp);
-  document.addEventListener('visibilitychange', () => { if (vid && document.hidden) vid.pause(); else if (vid && cpOn && !reduced && vid.src && !vid.ended) vid.play().catch(() => {}); });
+  document.addEventListener('visibilitychange', () => { if (vid && document.hidden) vid.pause(); else if (vid && cpOn && !reduced && vid.src) vid.play().catch(() => {}); });
 
   frame();
 })();

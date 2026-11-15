@@ -176,11 +176,12 @@
   const pcards = $$('.pcard');
   pcards.forEach(c => { const on = () => pcards.forEach(x => x.classList.toggle('on', x === c)); c.addEventListener('pointerenter', on); c.addEventListener('focus', on); c.addEventListener('click', on); });
 
-  /* ---------------- modules: tabs switch the platform screen on the laptop ---------------- */
-  const tabs = $$('.tab'), shots = $$('#screen img');
+  /* ---------------- modules: tabs switch the HTML platform screen on the laptop (screens.js) ---------------- */
+  const tabs = $$('.tab'), host = $('#screen .lap-scr');
+  const SLUGS = ['water-balance', 'thermal', 'coc', 'predictive-maintenance', 'optimization'];
   function setMod(i) {
     tabs.forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
-    shots.forEach((s, k) => { if (k === i) s.loading = 'eager'; s.classList.toggle('on', k === i); });
+    if (host && window.SMYScreens) window.SMYScreens.show(host, SLUGS[i]);
   }
   tabs.forEach((t, i) => t.addEventListener('click', () => setMod(i)));
   $('#tabs').addEventListener('keydown', e => {
@@ -188,8 +189,5 @@
     const n = e.key === 'ArrowRight' ? (cur + 1) % N : e.key === 'ArrowLeft' ? (cur + N - 1) % N : -1;
     if (n >= 0) { e.preventDefault(); setMod(n); tabs[n].focus(); }
   });
-  const sb = $('#stagebox');
-  // once the stage is near, fetch the other screens so switching tabs is instant
-  new IntersectionObserver(([en], o) => { if (en.isIntersecting) { shots.forEach(s => s.loading = 'eager'); o.disconnect(); } }, { rootMargin: '400px 0px' }).observe(sb);
 
 })();
