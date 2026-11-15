@@ -18,13 +18,17 @@ h2{font-weight:500;font-size:clamp(28px,3.1vw,46px);line-height:1.15;color:var(-
 section{position:relative}
 
 /* ---------- loader ---------- */
-#loader{position:fixed;inset:0;background:#fff;z-index:90;display:none}
+/* like the hosted coming-soon page: the loader is see-through, so the logo plays over the hero's blue gradient
+   and particle wave from the first frame (it only catches "click to skip") */
+#loader{position:fixed;inset:0;z-index:90;display:none;background:transparent}
+html.loading #opener tspan:first-child{fill:#fff}
+html.loading .scroll-cue{visibility:hidden}
 #stage{position:fixed;z-index:95;left:50%;top:50%;width:0;height:0;display:none;pointer-events:none;will-change:left,top,width,height}
 #stage svg,#brandSlot svg{width:100%;height:100%}
 html.js.loading #loader,html.js #stage{display:block}
 html.js.loading{overflow:hidden}
 html.js.loading body{overflow:hidden}
-#loader .skip{position:absolute;right:20px;bottom:18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7b95a0;opacity:0;animation:fadeIn .6s 1.2s forwards}
+#loader .skip{position:absolute;right:20px;bottom:18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(223,244,247,.7);opacity:0;animation:fadeIn .6s 1.2s forwards;z-index:1}
 @keyframes fadeIn{to{opacity:1}}
 #opener tspan{transition:fill .7s ease}
 #opener.on-dark tspan:first-child{fill:#fff}

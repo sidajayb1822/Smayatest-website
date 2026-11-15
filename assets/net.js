@@ -66,12 +66,10 @@
     }
     if (running) requestAnimationFrame(frame);
   }
-  // the field only animates once the logo has landed, so the loader gets the whole frame budget
-  let netLive = false;
-  function setRun(on) { on = on && netLive; if (on && !running && !reduced) { running = true; requestAnimationFrame(frame); } else if (!on) running = false; }
-  window.SMY.whenLanded(() => setTimeout(() => { netLive = true; setRun(visible && !document.hidden); }, 350));
+  // the wave rolls from the first frame, behind the logo intro too (as on the coming-soon page)
+  function setRun(on) { if (on && !running && !reduced) { running = true; requestAnimationFrame(frame); } else if (!on) running = false; }
   build();
-  frame(performance.now());   // one still frame shows through while the white fades
+  frame(performance.now());
   addEventListener('resize', () => { build(); if (!running) frame(performance.now()); }, { passive: true });
   const hero = cv.closest('section');
   hero.addEventListener('pointermove', e => {

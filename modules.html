@@ -41,7 +41,7 @@
   {"@type":"ListItem","position":10,"name":"Engineering Intelligence & Performance Validation","url":"https://smayaa.ai/modules#validation"}]}
 ]}
 </script>
-<link rel="stylesheet" href="assets/site.css?v=0da2af27">
+<link rel="stylesheet" href="assets/site.css?v=9e28ac63">
 <link rel="stylesheet" href="assets/screens.css?v=ab61aa86">
 <style>
 /* platform palette: the page borrows the product's cards, pills and status colours */
@@ -77,22 +77,15 @@
 @keyframes ping{70%{box-shadow:0 0 0 7px rgba(31,143,92,0)}100%{box-shadow:0 0 0 0 rgba(31,143,92,0)}}
 
 /* ---------- module index: the platform's modules row ---------- */
-.m-index{padding:clamp(64px,8vw,120px) 0 clamp(36px,4vw,56px)}
+.m-index{padding:clamp(64px,8vw,120px) 0 0}
+.m-index .sec-head{margin-bottom:0}
 .panel{background:var(--card);border-radius:24px;box-shadow:0 30px 60px -40px rgba(13,74,94,.35),inset 0 0 0 1px var(--edge)}
-.mrow-card{padding:clamp(20px,2.4vw,32px)}
-.mrow-card header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
-.mrow-card header b{font-weight:500;font-size:17px;color:var(--deep)}
-.mrow-card header span{font-size:13px;color:var(--ok)}
-.mrow{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
-.mrow a{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 4px;border-radius:16px;text-align:center;font-size:12.5px;line-height:1.3;color:var(--muted);transition:background .3s,color .3s}
-.mrow a:hover,.mrow a:focus-visible{background:var(--soft);color:var(--deep)}
-.mrow a:hover .ring{background:#e6f5f8;transform:translateY(-3px)}
-.mrow small{display:block;font-size:11px;letter-spacing:.06em;color:#8aa6ae}
 
 /* ---------- module catalogue ---------- */
 .cat{padding:clamp(24px,3vw,40px) 0 clamp(80px,10vw,140px);background:linear-gradient(180deg,#fff 0,var(--app) 160px,var(--app) calc(100% - 200px),#fff)}
 .cat-grid{display:grid;grid-template-columns:minmax(240px,290px) minmax(0,1fr);gap:clamp(20px,2.6vw,40px);align-items:start}
-.mnav{position:sticky;top:96px;padding:14px}
+.mnav{position:sticky;top:96px;padding:14px;display:flex;flex-direction:column;height:var(--navh,auto)}
+.mnav ol{flex:1;justify-content:space-evenly}
 .mnav p{margin:6px 10px 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8aa6ae}
 .mnav ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
 .mnav a{position:relative;display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:12px;font-size:14px;line-height:1.3;color:var(--muted);transition:background .3s,color .3s}
@@ -115,6 +108,22 @@
 .mod.seen .lap{opacity:1;transform:none}
 @media (max-width:640px){.mod{padding:20px 14px 8px;border-radius:20px}.mh{display:block}.mh .mn{line-height:1.4;margin-right:12px}.mh h2{margin-top:6px}.mh p{margin-inline:2px}}
 @media (prefers-reduced-motion:reduce){.lap{opacity:1;transform:none;transition:none}}
+/* one pinned laptop: scrolling through the track switches the module text and the screen */
+.mtrack{position:relative}
+.manc{position:absolute;left:0;width:1px;height:1px;scroll-margin-top:96px;pointer-events:none}
+.mpin{position:sticky;top:96px}
+.mview{padding-bottom:clamp(14px,1.6vw,22px)}
+.mheads{display:grid}
+.mview .mh{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .4s var(--ease),transform .6s var(--ease),visibility 0s linear .4s}
+.mview .mh.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.mview .lap{width:min(100%,calc((100vh - 96px - var(--mh,200px) - 150px) * 1.7045));min-width:min(100%,380px)}
+.mprog{display:flex;align-items:center;gap:16px;margin:clamp(12px,1.4vw,18px) auto 0;max-width:980px;font-size:12.5px;color:#8aa6ae;font-variant-numeric:tabular-nums}
+.mprog b{font-weight:500;color:var(--teal)}
+.mbar{flex:1;height:3px;border-radius:3px;background:#e3eef2;overflow:hidden}
+.mbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#5cc4d6,#0b7a98);transform-origin:left;transform:scaleX(var(--p,.1))}
+@media (max-width:980px){.manc{scroll-margin-top:136px}.mpin{top:136px}.mview .lap{width:min(100%,calc((100vh - 136px - var(--mh,200px) - 110px) * 1.7045))}}
+@media (max-width:640px){.mhint{display:none}.mview .mh p{font-size:14px;line-height:1.6}}
+@media (prefers-reduced-motion:reduce){.mview .mh{transition:none;transform:none}}
 .app-note{margin-top:22px;font-size:12.5px;color:#7d949c;text-align:center}
 
 /* ---------- outcomes: the platform's customer-gains tiles ---------- */
@@ -136,15 +145,14 @@
 .cta-act{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px}
 
 @media (max-width:1180px){
-  .mrow{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:6px}
   .gain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:980px){
   .cat-grid{grid-template-columns:minmax(0,1fr)}
   /* the navigator becomes a sticky strip of chips under the header */
-  .mnav{top:68px;z-index:5;margin-inline:calc(var(--pad) * -1);padding:10px var(--pad);border-radius:0;background:rgba(238,245,249,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--edge)}
+  .mnav{height:auto;top:68px;z-index:5;margin-inline:calc(var(--pad) * -1);padding:10px var(--pad);border-radius:0;background:rgba(238,245,249,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--edge)}
   .mnav p{display:none}
-  .mnav ol{flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:6px}
+  .mnav ol{flex:none;flex-direction:row;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;gap:6px}
   .mnav ol::-webkit-scrollbar{display:none}
   .mnav li{flex:none}
   .mnav a{white-space:nowrap;padding:6px 14px 6px 6px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px var(--edge);font-size:13.5px;gap:8px}
@@ -156,10 +164,6 @@
   .cta-box{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .mrow{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
-  .mrow a{font-size:0;gap:4px;padding:6px 0}
-  .mrow a small{font-size:10.5px}
-  .mrow .ring{width:42px;height:42px}
   .gain-grid{grid-template-columns:1fr}
   .hero-act .btn{flex:1;justify-content:center;white-space:nowrap;padding-inline:18px}
 }
@@ -251,21 +255,6 @@
         <h2 id="core-title">Core Intelligence Modules</h2>
         <p>The same modules you see in the SMAYAA platform. Pick one to see what it reads, what it watches for and what it recommends.</p>
       </div>
-      <nav class="panel mrow-card rv" aria-label="Modules">
-        <header><b>Modules</b><span class="live">10 modules</span></header>
-        <ol class="mrow">
-          <li><a href="#thermal"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg></span>Cooling<small>TH-01</small></a></li>
-          <li><a href="#water-balance"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg></span>Water balance<small>WB-01</small></a></li>
-          <li><a href="#coc"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></span>CoC &amp; blowdown<small>COC-01</small></a></li>
-          <li><a href="#chemistry"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>Chemistry<small>04</small></a></li>
-          <li><a href="#filtration"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>Filtration<small>FLT</small></a></li>
-          <li><a href="#biological"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/><path d="M12 20v-9"/><path d="M6.53 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"/><path d="M22 13h-4"/><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg></span>Biological<small>BIO</small></a></li>
-          <li><a href="#energy"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>Energy<small>07</small></a></li>
-          <li><a href="#predictive-maintenance"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>Maintenance<small>08</small></a></li>
-          <li><a href="#optimization"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>Optimisation<small>CTRL-01</small></a></li>
-          <li><a href="#validation"><span class="ring"><svg class="lu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19.1"/></svg></span>Validation<small>10</small></a></li>
-        </ol>
-      </nav>
     </div>
   </section>
 
@@ -287,56 +276,35 @@
         </ol>
       </nav>
 
-      <div class="mstack">
-        <article class="mod" id="thermal" aria-labelledby="h-thermal">
-          <header class="mh"><span class="mn">01</span><span class="mc">TH-01</span><h2 id="h-thermal">Cooling Tower Thermal Intelligence</h2><p>Monitor cooling tower range, approach, wet-bulb temperature, heat load, and cooling performance to identify efficiency losses and opportunities for improvement.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="thermal"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Cooling module"></figure>
-        </article>
-
-        <article class="mod" id="water-balance" aria-labelledby="h-wb">
-          <header class="mh"><span class="mn">02</span><span class="mc">WB-01</span><h2 id="h-wb">Water Balance Intelligence</h2><p>Track make-up water, evaporation, blowdown, drift, and other water losses to identify excessive water consumption and opportunities for freshwater savings.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="water-balance"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Water balance module"></figure>
-        </article>
-
-        <article class="mod" id="coc" aria-labelledby="h-coc">
-          <header class="mh"><span class="mn">03</span><span class="mc">COC-01</span><h2 id="h-coc">Cycles of Concentration Optimization</h2><p>Analyze conductivity, make-up water quality, blowdown, and operating constraints to recommend optimized cycles of concentration and reduced water wastage.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="coc"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the CoC & blowdown module"></figure>
-        </article>
-
-        <article class="mod" id="chemistry" aria-labelledby="h-chem">
-          <header class="mh"><span class="mn">04</span><h2 id="h-chem">Water Chemistry &amp; Scaling Intelligence</h2><p>Monitor water chemistry, hardness, alkalinity, pH, conductivity, and scaling or corrosion indicators to assess risks to cooling equipment and heat transfer surfaces.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="chemistry"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Scaling module"></figure>
-        </article>
-
-        <article class="mod" id="filtration" aria-labelledby="h-flt">
-          <header class="mh"><span class="mn">05</span><span class="mc">FLT</span><h2 id="h-flt">Filtration Intelligence</h2><p>Analyze filtration performance, turbidity, suspended solids, differential pressure, cleaning cycles, and filter efficiency to identify fouling and optimize filtration operations.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="filtration"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Filtration module"></figure>
-        </article>
-
-        <article class="mod" id="biological" aria-labelledby="h-bio">
-          <header class="mh"><span class="mn">06</span><span class="mc">BIO</span><h2 id="h-bio">Biological Fouling Intelligence</h2><p>Evaluate available microbiological and operating data to identify conditions that increase biofouling risk and support preventive maintenance.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="biological"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Biological module"></figure>
-        </article>
-
-        <article class="mod" id="energy" aria-labelledby="h-en">
-          <header class="mh"><span class="mn">07</span><h2 id="h-en">Heat Transfer &amp; Energy Intelligence</h2><p>Correlate cooling performance, water quality, flow, temperature, fan operation, and pumping energy to identify opportunities for improved thermal and energy efficiency.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="energy"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Energy module"></figure>
-        </article>
-
-        <article class="mod" id="predictive-maintenance" aria-labelledby="h-pm">
-          <header class="mh"><span class="mn">08</span><h2 id="h-pm">Predictive Maintenance &amp; Anomaly Detection</h2><p>Use historical trends, multivariable analysis, and machine learning to identify unusual operating conditions and emerging equipment-performance problems before they cause major disruptions.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="predictive-maintenance"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Contamination module"></figure>
-        </article>
-
-        <article class="mod" id="optimization" aria-labelledby="h-opt">
-          <header class="mh"><span class="mn">09</span><span class="mc">CTRL-01</span><h2 id="h-opt">Multi-Objective Optimization Intelligence</h2><p>Evaluate the relationship between water consumption, cooling efficiency, energy, chemical consumption, and equipment reliability to recommend technically feasible operating improvements.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="optimization"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Optimisation module"></figure>
-        </article>
-
-        <article class="mod" id="validation" aria-labelledby="h-val">
-          <header class="mh"><span class="mn">10</span><h2 id="h-val">Engineering Intelligence &amp; Performance Validation</h2><p>Perform engineering calculations, sensor-data validation, KPI monitoring, baseline comparisons, and performance verification to support reliable operational recommendations.</p></header>
-          <figure class="lap lapx"><div class="lap-scr" data-screen="validation"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" loading="lazy" decoding="async" alt="SMAYAA platform screen for the Sensors module"></figure>
-        </article>
+      <div class="mtrack" id="mtrack">
+          <span class="manc" id="thermal" aria-hidden="true"></span>
+          <span class="manc" id="water-balance" aria-hidden="true"></span>
+          <span class="manc" id="coc" aria-hidden="true"></span>
+          <span class="manc" id="chemistry" aria-hidden="true"></span>
+          <span class="manc" id="filtration" aria-hidden="true"></span>
+          <span class="manc" id="biological" aria-hidden="true"></span>
+          <span class="manc" id="energy" aria-hidden="true"></span>
+          <span class="manc" id="predictive-maintenance" aria-hidden="true"></span>
+          <span class="manc" id="optimization" aria-hidden="true"></span>
+          <span class="manc" id="validation" aria-hidden="true"></span>
+        <div class="mpin">
+          <article class="mod mview" aria-label="Module details">
+            <div class="mheads" aria-live="polite">
+            <header class="mh on" data-slug="thermal" data-id="thermal"><span class="mn">01</span><span class="mc">TH-01</span><h2 id="h-thermal">Cooling Tower Thermal Intelligence</h2><p>Monitor cooling tower range, approach, wet-bulb temperature, heat load, and cooling performance to identify efficiency losses and opportunities for improvement.</p></header>
+            <header class="mh" data-slug="water-balance" data-id="water-balance"><span class="mn">02</span><span class="mc">WB-01</span><h2 id="h-wb">Water Balance Intelligence</h2><p>Track make-up water, evaporation, blowdown, drift, and other water losses to identify excessive water consumption and opportunities for freshwater savings.</p></header>
+            <header class="mh" data-slug="coc" data-id="coc"><span class="mn">03</span><span class="mc">COC-01</span><h2 id="h-coc">Cycles of Concentration Optimization</h2><p>Analyze conductivity, make-up water quality, blowdown, and operating constraints to recommend optimized cycles of concentration and reduced water wastage.</p></header>
+            <header class="mh" data-slug="chemistry" data-id="chemistry"><span class="mn">04</span><h2 id="h-chem">Water Chemistry &amp; Scaling Intelligence</h2><p>Monitor water chemistry, hardness, alkalinity, pH, conductivity, and scaling or corrosion indicators to assess risks to cooling equipment and heat transfer surfaces.</p></header>
+            <header class="mh" data-slug="filtration" data-id="filtration"><span class="mn">05</span><span class="mc">FLT</span><h2 id="h-flt">Filtration Intelligence</h2><p>Analyze filtration performance, turbidity, suspended solids, differential pressure, cleaning cycles, and filter efficiency to identify fouling and optimize filtration operations.</p></header>
+            <header class="mh" data-slug="biological" data-id="biological"><span class="mn">06</span><span class="mc">BIO</span><h2 id="h-bio">Biological Fouling Intelligence</h2><p>Evaluate available microbiological and operating data to identify conditions that increase biofouling risk and support preventive maintenance.</p></header>
+            <header class="mh" data-slug="energy" data-id="energy"><span class="mn">07</span><h2 id="h-en">Heat Transfer &amp; Energy Intelligence</h2><p>Correlate cooling performance, water quality, flow, temperature, fan operation, and pumping energy to identify opportunities for improved thermal and energy efficiency.</p></header>
+            <header class="mh" data-slug="predictive-maintenance" data-id="predictive-maintenance"><span class="mn">08</span><h2 id="h-pm">Predictive Maintenance &amp; Anomaly Detection</h2><p>Use historical trends, multivariable analysis, and machine learning to identify unusual operating conditions and emerging equipment-performance problems before they cause major disruptions.</p></header>
+            <header class="mh" data-slug="optimization" data-id="optimization"><span class="mn">09</span><span class="mc">CTRL-01</span><h2 id="h-opt">Multi-Objective Optimization Intelligence</h2><p>Evaluate the relationship between water consumption, cooling efficiency, energy, chemical consumption, and equipment reliability to recommend technically feasible operating improvements.</p></header>
+            <header class="mh" data-slug="validation" data-id="validation"><span class="mn">10</span><h2 id="h-val">Engineering Intelligence &amp; Performance Validation</h2><p>Perform engineering calculations, sensor-data validation, KPI monitoring, baseline comparisons, and performance verification to support reliable operational recommendations.</p></header>
+            </div>
+            <figure class="lap lapx"><div class="lap-scr" data-screen="thermal"></div><img class="lap-frame" src="img/laptop-frame.webp" width="1500" height="880" decoding="async" alt="SMAYAA platform screen for the selected module"></figure>
+            <div class="mprog"><span class="mcount"><b>01</b> / 10</span><span class="mbar"><i></i></span><span class="mhint">Scroll for the next module</span></div>
+          </article>
+        </div>
       </div>
     </div>
     <p class="wrap app-note">Screens show illustrative data from a synthetic 12-month cooling tower dataset.</p>
@@ -346,9 +314,7 @@
   <section class="gains" aria-labelledby="gains-title">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2 id="gains-title">What The Modules Deliver Together</h2>
-        <p>Each module watches its own part of the system. Together they turn into gains you can measure on your plant.</p>
-      </div>
+        <h2 id="gains-title">What The Modules Deliver Together</h2>      </div>
       <ul class="gain-grid rv">
         <li class="gain" style="--g:#e6f0fb"><h3>Lower make-up water</h3><span class="dir">↓ Freshwater use</span><p>From <span>WB-01</span> · <span>COC-01</span> · <span>CTRL-01</span></p></li>
         <li class="gain" style="--g:#e3f4ea"><h3>Lower blowdown</h3><span class="dir">↓ Water discharged</span><p>From <span>COC-01</span> · <span>Chemistry</span></p></li>
@@ -410,10 +376,10 @@
 </footer>
 
 
-<script src="assets/site.js?v=b1d422b8" defer></script>
-<script src="assets/net.js?v=be59d167" defer></script>
+<script src="assets/site.js?v=1c6a055c" defer></script>
+<script src="assets/net.js?v=ac54335a" defer></script>
 <script src="assets/screens.js?v=e8c07508" defer></script>
-<script src="assets/modules.js?v=e5ae7fd9" defer></script>
+<script src="assets/modules.js?v=32ac79c1" defer></script>
 <script src="assets/logo.js?v=650fa6c9" defer></script>
 </body>
 </html>

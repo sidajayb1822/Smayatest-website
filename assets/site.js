@@ -6,7 +6,7 @@
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
   const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
-  /* ---------------- loader: logo plays on white, then flies into the header ---------------- */
+  /* ---------------- loader: logo plays on the blue coming-soon gradient, then flies into the header ---------------- */
   const stage = $('#stage'), slot = $('#brandSlot');
   let loader = $('#loader');
   // set in the home page's <head>: the visitor has already seen the intro in this tab
@@ -16,7 +16,8 @@
   const landCbs = [];
 
   function vbAspect() { const v = svg.viewBox.baseVal; return v && v.height ? v.width / v.height : 1340 / 1180; }
-  function startSize() { return Math.min(innerHeight * .52, innerWidth * .8 / (1340 / 1180)); }
+  // same size as on the hosted coming-soon page (height clamp(150px, 26vh, 250px), width up to 88vw)
+  function startSize() { return Math.min(Math.max(150, Math.min(innerHeight * .26, 250)), innerWidth * .88 / (1340 / 1180)); }
   let lastCss = '';
   function place(cx, cy, h) {
     const w = h * vbAspect();
@@ -39,6 +40,7 @@
       ar = fb[2] / fb[3];
       slot.style.aspectRatio = ar;
       if (instant) { land(); return; }
+      svg.classList.add('on-dark');         // the loader is dark blue now, so the logo text is white from the start
       place(innerWidth / 2, innerHeight / 2, startSize());
     },
     time(t, END, SPEED) {
