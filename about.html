@@ -94,10 +94,10 @@ html.js .tm.rv{transition:opacity .9s var(--ease),transform .9s var(--ease),box-
 .tm::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(31,182,203,.14),transparent 70%)}
 html.js .tm.rv.in:hover,.tm:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1px #b9e2ea,0 30px 50px -34px rgba(13,74,94,.55);transition-delay:0s}
 .tm:hover::before{opacity:1}
-.av{position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin-bottom:22px;font-size:21px;font-weight:500;letter-spacing:.04em;color:var(--deep);background:linear-gradient(135deg,#f0fbfc,#d9f2f6)}
-.av::after{content:"";position:absolute;inset:-4px;border-radius:50%;padding:2px;background:conic-gradient(from 200deg,#b3eef3,#5cc4d6,#0b7a98,#b3eef3);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;transition:transform 1.2s var(--ease)}
-.tm:hover .av::after{transform:rotate(180deg)}
+.tm .ph{display:block;margin:-26px -22px 20px;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(180deg,#eef7f9,#dbeff3)}
+.tm .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%;transition:transform .9s var(--ease)}
+.tm:hover .ph img{transform:scale(1.045)}
+.tm .ph::after{content:"";position:absolute;left:0;right:0;top:0;aspect-ratio:4/5;pointer-events:none;box-shadow:inset 0 -1px 0 #e1eef1}
 .tm h3{margin:0 0 6px;font-size:19px;font-weight:500;color:var(--deep)}
 .tm .k{display:block;margin-bottom:12px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
 .tm p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
@@ -232,11 +232,11 @@ html.js .tm.rv.in:hover,.tm:hover{transform:translateY(-6px);box-shadow:inset 0 
         <p class="rv">Our leadership team — Sudhir Mehta, Santosh Lala, and Siddaram S. — brings together more than 100 years of cumulative experience in industrial water management, complemented by Sanjeev Handoo's four decades of experience in hydro automation and industrial control systems, and the AI and machine learning expertise of Brahma.</p>
       </div>
       <ul class="team">
-        <li class="tm rv"><span class="av" aria-hidden="true">SM</span><span class="k">Leadership</span><h3>Sudhir Mehta</h3><p>Industrial water management</p></li>
-        <li class="tm rv"><span class="av" aria-hidden="true">SL</span><span class="k">Leadership</span><h3>Santosh Lala</h3><p>Industrial water management</p></li>
-        <li class="tm rv"><span class="av" aria-hidden="true">SS</span><span class="k">Leadership</span><h3>Siddaram S.</h3><p>Industrial water management</p></li>
-        <li class="tm rv"><span class="av" aria-hidden="true">SH</span><span class="k">Automation</span><h3>Sanjeev Handoo</h3><p>Four decades in hydro automation and industrial control systems</p></li>
-        <li class="tm rv"><span class="av" aria-hidden="true">B</span><span class="k">AI &amp; ML</span><h3>Brahma</h3><p>AI and machine learning expertise</p></li>
+        <li class="tm rv"><span class="ph"><img src="img/team-sudhir-mehta.webp" width="234" height="293" loading="lazy" decoding="async" alt="Sudhir Mehta"></span><span class="k">Leadership</span><h3>Sudhir Mehta</h3><p>Industrial water management</p></li>
+        <li class="tm rv"><span class="ph"><img src="img/team-santosh-lala.webp" width="235" height="294" loading="lazy" decoding="async" alt="Santosh Lala"></span><span class="k">Leadership</span><h3>Santosh Lala</h3><p>Industrial water management</p></li>
+        <li class="tm rv"><span class="ph"><img src="img/team-siddaram-s.webp" width="235" height="294" loading="lazy" decoding="async" alt="Siddaram S."></span><span class="k">Leadership</span><h3>Siddaram S.</h3><p>Industrial water management</p></li>
+        <li class="tm rv"><span class="ph"><img src="img/team-sanjeev-handoo.webp" width="480" height="600" loading="lazy" decoding="async" alt="Sanjeev Handoo"></span><span class="k">Automation</span><h3>Sanjeev Handoo</h3><p>Four decades in hydro automation and industrial control systems</p></li>
+        <li class="tm rv"><span class="ph"><img src="img/team-brahma.webp" width="480" height="600" loading="lazy" decoding="async" alt="Brahma"></span><span class="k">AI &amp; ML</span><h3>Brahma</h3><p>AI and machine learning expertise</p></li>
       </ul>
     </div>
   </section>
@@ -279,6 +279,7 @@ html.js .tm.rv.in:hover,.tm:hover{transform:translateY(-6px);box-shadow:inset 0 
           <h2>Company</h2>
           <a href="/">Home</a>
           <a href="about">About</a>
+          <a href="faq">FAQs</a>
           <a href="contact">Contact</a>
         </div>
       </nav>
