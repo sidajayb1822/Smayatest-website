@@ -149,3 +149,10 @@ html.js .rv.in{opacity:1;transform:none}
 .nav>a[aria-current=page]{opacity:1}.nav>a[aria-current=page]::after{transform:scaleX(1)}
 .nav .dd:has([aria-current=page])>button{opacity:1}.nav .dd:has([aria-current=page])>button::after{transform:scaleX(1)}
 .dd-menu a[aria-current=page]{color:var(--teal);font-weight:500}
+
+/* ---------- touch screens: finger-sized hit areas (invisible, the layout does not move) ---------- */
+@media (pointer:coarse){
+  .foot-nav a,.foot-bot a,.cf-more,.cf-dots button,.cd .copy,.tools button,.ly .go{position:relative}
+  .foot-nav a::before,.foot-bot a::before,.cf-more::before,.cd .copy::before,.tools button::before,.ly .go::before{content:"";position:absolute;inset:-9px -8px}
+  .cf-dots button::before{content:"";position:absolute;inset:-16px -4px}
+}

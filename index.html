@@ -34,7 +34,7 @@ try{var d=document.documentElement,n=performance.getEntriesByType('navigation')[
   "audience":{"@type":"BusinessAudience","audienceType":"Steel & Metal, Power Generation, Pulp & Paper, Cement Manufacturing, Refineries & Petrochemicals, Data Centres, HVAC & District Cooling, Water-Intensive Industries"}}
 ]}
 </script>
-<link rel="stylesheet" href="assets/site.css?v=9e28ac63">
+<link rel="stylesheet" href="assets/site.css?v=d2b06b60">
 <link rel="stylesheet" href="assets/screens.css?v=ab61aa86">
 <style>
 /* ---------- intro ---------- */
@@ -117,7 +117,16 @@ html.js .ws-step:not(.on){opacity:.3}
   .ws-stage{order:-1;position:sticky;top:66px;z-index:2;height:auto;background:linear-gradient(#fff 88%,rgba(255,255,255,0));padding:8px 0 22px;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad)}
   .ws-card{position:relative;top:auto;height:auto}
   .ws-card svg{height:auto}
-  .ws-step{min-height:58vh}
+  .ws-step{min-height:46vh}
+}
+/* phones held sideways: card and steps side by side again, sized to the short screen */
+@media (max-width:900px) and (orientation:landscape) and (max-height:600px){
+  .ws{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+  .ws-stage{order:0;position:static;background:none;padding:0;margin:0}
+  .ws-card{position:sticky;top:78px;height:calc(100svh - 96px);padding:40px 12px 10px}
+  .ws-card svg{height:100%}
+  .ws-step{min-height:80svh}
+  .ws-step .n{font-size:44px}
 }
 
 /* ---------- industries ---------- */
@@ -203,6 +212,7 @@ html.js .ws-step:not(.on){opacity:.3}
 .mods{padding-bottom:0}
 .stagebox{position:relative;perspective:1600px;padding-top:10px}
 .laptop{width:min(100%,1060px);margin:0 auto}
+@media (max-width:900px) and (orientation:landscape) and (max-height:600px){.laptop{width:min(100%,calc((100svh - 90px) * 1.183))}}
 
 </style>
 </head>
@@ -512,9 +522,9 @@ html.js .ws-step:not(.on){opacity:.3}
 
 
 <script src="assets/site.js?v=1c6a055c" defer></script>
-<script src="assets/net.js?v=ac54335a" defer></script>
+<script src="assets/net.js?v=5e1564d4" defer></script>
 <script src="assets/screens.js?v=e8c07508" defer></script>
-<script src="assets/home.js?v=018d6be7" defer></script>
+<script src="assets/home.js?v=b8d914b3" defer></script>
 <script src="assets/logo.js?v=650fa6c9" defer></script>
 </body>
 </html>

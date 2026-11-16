@@ -152,7 +152,8 @@
     function update() {
       ticking = false;
       // on phones the plant is pinned above the text, so "the middle" is the middle of what's left below it
-      const stacked = narrow.matches;
+      // (phones held sideways put the card beside the text again, so check the actual layout, not just the width)
+      const stacked = narrow.matches && getComputedStyle(ws).display === 'flex';
       const top = stacked ? stage.getBoundingClientRect().bottom : 0, mid = (top + innerHeight) / 2;
       const c = steps.map(s => { const r = s.getBoundingClientRect(); return r.top + r.height / 2; });
       let act = 0; c.forEach((y, i) => { if (y - (c[1] - c[0]) / 2 < mid) act = i; });

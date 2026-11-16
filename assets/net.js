@@ -28,7 +28,9 @@
     NX = 2 * Math.ceil(((W / 2 + 60) * ZF / f + 1) / SEP) + 1;
     NZ = Math.ceil((ZF - ZN) / SEP);
   }
+  let skip = false;
   function frame(ms) {
+    if (running && W < 700 && (skip = !skip)) { requestAnimationFrame(frame); return; }
     const t = ms / 1000;
     mouse.sx += (mouse.x - mouse.sx) * .12; mouse.sy += (mouse.y - mouse.sy) * .12;
     mouse.k += ((mouse.on ? 1 : 0) - mouse.k) * .05;
