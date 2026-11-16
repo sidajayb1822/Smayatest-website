@@ -88,35 +88,44 @@
 .pp-top{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,110px);align-items:start;margin-bottom:clamp(44px,5vw,72px)}
 .pp-top h2{margin:0}
 .pp-top p{margin:0;font-size:clamp(16px,1.25vw,19px);line-height:1.85;color:var(--muted)}
-.team{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0}
-.tm{position:relative;overflow:hidden;isolation:isolate;padding:26px 22px 24px;border-radius:24px;background:#fff;box-shadow:inset 0 0 0 1px #e1eef1,0 26px 50px -40px rgba(13,74,94,.5)}
-html.js .tm.rv{transition:opacity .9s var(--ease),transform .9s var(--ease),box-shadow .5s}
-.tm::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(31,182,203,.14),transparent 70%)}
-html.js .tm.rv.in:hover,.tm:hover{transform:translateY(-6px);box-shadow:inset 0 0 0 1px #b9e2ea,0 30px 50px -34px rgba(13,74,94,.55);transition-delay:0s}
-.tm:hover::before{opacity:1}
-.tm .ph{display:block;margin:-26px -22px 20px;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(180deg,#eef7f9,#dbeff3)}
-.tm .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%;transition:transform .9s var(--ease)}
-.tm:hover .ph img{transform:scale(1.045)}
-.tm .ph::after{content:"";position:absolute;left:0;right:0;top:0;aspect-ratio:4/5;pointer-events:none;box-shadow:inset 0 -1px 0 #e1eef1}
-.tm h3{margin:0 0 6px;font-size:19px;font-weight:500;color:var(--deep)}
-.tm .k{display:block;margin-bottom:12px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.tm p{margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
-.team .tm:nth-child(2){transition-delay:.08s}.team .tm:nth-child(3){transition-delay:.16s}.team .tm:nth-child(4){transition-delay:.24s}.team .tm:nth-child(5){transition-delay:.32s}
+/* people: one soft panel, centred groups; leadership a touch larger than partners */
+.tpanel{position:relative;overflow:hidden;padding:clamp(36px,4.4vw,64px) clamp(18px,3vw,48px) clamp(40px,4.6vw,68px);border-radius:32px;
+  background:radial-gradient(70% 60% at 50% 0%,rgba(179,238,243,.32),transparent 70%),linear-gradient(180deg,#f3f9fa,#fbfdfd);box-shadow:inset 0 0 0 1px #e1eef1}
+.tgroup+.tgroup{margin-top:clamp(44px,5vw,72px)}
+.tg-h{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto clamp(26px,2.8vw,38px);max-width:560px;font-size:12.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+.tg-h::before,.tg-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#b9dbe3)}
+.tg-h::after{background:linear-gradient(90deg,#b9dbe3,transparent)}
+.team{display:flex;flex-wrap:wrap;justify-content:center;gap:34px clamp(22px,3.2vw,48px);list-style:none;margin:0;padding:0}
+.tm{position:relative;width:200px;text-align:center}
+.team.lead .tm{width:230px}
+html.js .tm.rv{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.tm .ph{position:relative;display:block;aspect-ratio:1;border-radius:20px;margin-bottom:16px;padding:5px;background:#fff;
+  box-shadow:0 0 0 1px #e1eef1,0 22px 40px -28px rgba(13,74,94,.6);transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.tm .ph img{display:block;width:100%;height:100%;border-radius:15px;object-fit:cover;object-position:50% 18%;transition:transform .8s var(--ease)}
+.tm .ph{overflow:hidden}
+.tm:hover .ph{transform:translateY(-5px);box-shadow:0 0 0 2px #5cc4d6,0 30px 46px -28px rgba(13,74,94,.6)}
+.tm:hover .ph img{transform:scale(1.04)}
+.tm h3{margin:0;font-size:17.5px;font-weight:500;line-height:1.3;color:var(--deep)}
+.team.lead .tm h3{font-size:19px}
+.tm h3::after{content:"";display:block;width:22px;height:2px;margin:9px auto 8px;border-radius:2px;background:linear-gradient(90deg,#5cc4d6,#0b7a98);transition:width .5s var(--ease)}
+.tm:hover h3::after{width:44px}
+.tm .k{display:block;font-size:13.5px;line-height:1.5;color:var(--muted)}
 
 /* ---------- call to action ---------- */
 .cta-band{padding:0 0 clamp(80px,10vw,140px)}
 .cta-box{border-radius:36px;padding:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 40px;background:var(--soft);box-shadow:inset 0 0 0 1px #e1eef1}
 .cta-box h2{margin:0;max-width:22ch}
 
-@media (max-width:1100px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:900px){
   .ab-top,.pp-top{grid-template-columns:1fr}
   .goals,.xb-box{grid-template-columns:1fr}
-  .team{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:560px){
   .hero-act .btn{flex:1;justify-content:center;white-space:nowrap;padding-inline:18px}
-  .team{grid-template-columns:1fr}
+  .team{gap:28px 14px}
+  .tm,.team.lead .tm{width:calc(50% - 7px)}
+  .tm .k{font-size:12.5px}
+  .tpanel{border-radius:24px}
   .xb-box,.cta-box{border-radius:26px}
 }
 @media (prefers-reduced-motion:reduce){.hl,.goal::after{transition:none}}
@@ -229,15 +238,27 @@ html.js .tm.rv.in:hover,.tm:hover{transform:translateY(-6px);box-shadow:inset 0 
     <div class="wrap">
       <div class="pp-top">
         <h2 id="pp-title" class="rv">The people behind SMAYAA</h2>
-        <p class="rv">Our leadership team — Sudhir Mehta, Santosh Lala, and Siddaram S. — brings together more than 100 years of cumulative experience in industrial water management, complemented by Sanjeev Handoo's four decades of experience in hydro automation and industrial control systems, and the AI and machine learning expertise of Brahma.</p>
+        <p class="rv">Our leadership team — Sudhir Mehta, Santosh Lala, and Siddaram S. — brings together more than 100 years of cumulative experience in industrial water management, complemented by Sanjeev Handoo's four decades of experience in hydro automation and industrial control systems, and the AI and machine learning expertise of Brahma Acharya.</p>
       </div>
-      <ul class="team">
-        <li class="tm rv"><span class="ph"><img src="img/team-sudhir-mehta.webp" width="234" height="293" loading="lazy" decoding="async" alt="Sudhir Mehta"></span><span class="k">Leadership</span><h3>Sudhir Mehta</h3></li>
-        <li class="tm rv"><span class="ph"><img src="img/team-santosh-lala.webp" width="235" height="294" loading="lazy" decoding="async" alt="Santosh Lala"></span><span class="k">Leadership</span><h3>Santosh Lala</h3></li>
-        <li class="tm rv"><span class="ph"><img src="img/team-siddaram-s.webp" width="235" height="294" loading="lazy" decoding="async" alt="Siddaram S."></span><span class="k">Leadership</span><h3>Siddaram S.</h3></li>
-        <li class="tm rv"><span class="ph"><img src="img/team-sanjeev-handoo.webp" width="480" height="600" loading="lazy" decoding="async" alt="Sanjeev Handoo"></span><span class="k">Automation</span><h3>Sanjeev Handoo</h3></li>
-        <li class="tm rv"><span class="ph"><img src="img/team-brahma.webp" width="480" height="600" loading="lazy" decoding="async" alt="Brahma"></span><span class="k">AI &amp; ML</span><h3>Brahma</h3></li>
-      </ul>
+      <div class="tpanel">
+        <div class="tgroup">
+          <h3 class="tg-h rv">Leadership Team</h3>
+          <ul class="team lead">
+            <li class="tm rv"><span class="ph"><img src="img/team-sudhir-mehta.webp" width="480" height="600" loading="lazy" decoding="async" alt="Sudhir Mehta"></span><h3>Sudhir Mehta</h3><span class="k">Business Development &amp; Finance</span></li>
+            <li class="tm rv"><span class="ph"><img src="img/team-siddaram-s.webp" width="480" height="600" loading="lazy" decoding="async" alt="Siddaram S."></span><h3>Siddaram S.</h3><span class="k">Business Development</span></li>
+            <li class="tm rv"><span class="ph"><img src="img/team-santosh-lala.webp" width="480" height="600" loading="lazy" decoding="async" alt="Santosh Lala"></span><h3>Santosh Lala</h3><span class="k">Operations &amp; Execution</span></li>
+          </ul>
+        </div>
+        <div class="tgroup">
+          <h3 class="tg-h rv">Partners &amp; Advisors</h3>
+          <ul class="team">
+            <li class="tm rv"><span class="ph"><img src="img/team-sanjeev-handoo.webp" width="480" height="600" loading="lazy" decoding="async" alt="Sanjeev Handoo"></span><h3>Sanjeev Handoo</h3><span class="k">Hydro Automation &amp; Governor Control Specialist</span></li>
+            <li class="tm rv"><span class="ph"><img src="img/team-brahma.webp" width="480" height="600" loading="lazy" decoding="async" alt="Brahma Acharya"></span><h3>Brahma Acharya</h3><span class="k">AI &amp; Enterprise Systems Architect</span></li>
+            <li class="tm rv"><span class="ph"><img src="img/team-sunil-p.webp" width="480" height="600" loading="lazy" decoding="async" alt="Sunil P Agarwal"></span><h3>Sunil P Agarwal</h3><span class="k">Instrumentation &amp; Control System Specialist</span></li>
+            <li class="tm rv"><span class="ph"><img src="img/team-monica-gupta.webp" width="480" height="600" loading="lazy" decoding="async" alt="Monica Gupta"></span><h3>Monica Gupta</h3><span class="k">Business Strategy &amp; Investment Advisor</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
